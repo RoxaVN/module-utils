@@ -52,13 +52,19 @@ export class GetTranslationsApiService extends InjectDatabaseService {
 @serverModule.useApi(translationApi.create)
 export class CreateTranslationApiService extends InjectDatabaseService {
   async handle(request: InferApiRequest<typeof translationApi.create>) {
-    const translation = new Translation();
-    translation.key = request.key;
-    translation.lang = request.lang;
-    translation.content = request.content;
+    const result = await this.entityManager
+      .createQueryBuilder()
+      .insert()
+      .into(Translation)
+      .values({
+        key: request.key,
+        lang: request.lang,
+        content: request.content,
+      })
+      .orUpdate(['content'], ['key', 'lang'])
+      .execute();
 
-    await this.entityManager.save(translation);
-    return { id: translation.id };
+    return { id: result.generatedMaps[0] as any };
   }
 }
 
