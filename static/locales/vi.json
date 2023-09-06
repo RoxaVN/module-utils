@@ -3,6 +3,7 @@
   "language": "Ngôn ngữ",
   "deleteTranslation": "Xóa bản dịch {{ key }} of ngôn ngữ {{ lang }}",
   "Error": {
+    "NotFoundTranslationException": "Không tìm thấy bản dịch {{ key }} cho ngôn ngữ {{ lang }}",
     "NotFoundSettingException": "Không tìm thấy cài đặt {{ name }} của {{ module }}"
   },
   "Meta": {

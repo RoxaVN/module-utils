@@ -1,9 +1,13 @@
 import { InferApiRequest, NotFoundException } from '@roxavn/core/base';
 import { InjectDatabaseService } from '@roxavn/core/server';
 
-import { translationApi } from '../../base/index.js';
+import {
+  NotFoundTranslationException,
+  translationApi,
+} from '../../base/index.js';
 import { serverModule } from '../module.js';
 import { Translation } from '../entities/translation.entity.js';
+import { In } from 'typeorm';
 
 @serverModule.useApi(translationApi.getOne)
 export class GetTranslationApiService extends InjectDatabaseService {
@@ -82,16 +86,23 @@ export class DeleteTranslationApiService extends InjectDatabaseService {
 }
 
 @serverModule.injectable()
-export class GetTranslationsbyKeyService extends InjectDatabaseService {
-  async handle(request: { key: string; lang?: string }) {
-    const translation = await this.entityManager
+export class GetTranslationsbyKeysService extends InjectDatabaseService {
+  async handle(request: { keys: string[]; lang?: string }) {
+    const translations = await this.entityManager
       .getRepository(Translation)
-      .findOne({
-        where: { key: request.key, lang: request.lang },
+      .find({
+        select: ['content', 'key'],
+        where: { key: In(request.keys), lang: request.lang },
       });
-    if (translation) {
-      return translation;
-    }
-    throw new NotFoundException();
+    const result: Record<string, string> = {};
+    request.keys.map((key) => {
+      const translation = translations.find((t) => t.key === key);
+      if (translation) {
+        result[key] = translation.content;
+      } else {
+        throw new NotFoundTranslationException(key, request.lang || '');
+      }
+    });
+    return result;
   }
 }

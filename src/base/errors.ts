@@ -14,3 +14,17 @@ export class NotFoundSettingException extends NotFoundException {
     this.i18n.default.params = { name, module };
   }
 }
+
+export class NotFoundTranslationException extends NotFoundException {
+  i18n = {
+    default: {
+      key: 'Error.NotFoundTranslationException',
+      ns: baseModule.escapedName,
+    } as I18nErrorField,
+  };
+
+  constructor(key: string, lang: string) {
+    super();
+    this.i18n.default.params = { key, lang };
+  }
+}

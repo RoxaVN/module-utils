@@ -3,6 +3,7 @@
   "language": "Language",
   "deleteTranslation": "Delete translation {{ key }} of language {{ lang }}",
   "Error": {
+    "NotFoundTranslationException": "Not found translation {{ key }} of language {{ lang }}",
     "NotFoundSettingException": "Not found setting {{ name }} of {{ module }}"
   },
   "Meta": {
