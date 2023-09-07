@@ -64,7 +64,7 @@ export class UpsertTranslationApiService extends InjectDatabaseService {
       .orUpdate(['content'], ['key', 'lang'])
       .execute();
 
-    return { id: result.generatedMaps[0] as any };
+    return { id: result.generatedMaps[0].id };
   }
 }
 
