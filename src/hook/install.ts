@@ -9,7 +9,7 @@ export class InstallHook extends UtilsInstallHook {
     await this.setAdminRoleService.handle(roles.Admin);
 
     const secret = await Token.create();
-    await this.createSettingService.handle({
+    await this.upsertSettingService.handle({
       module: serverModule.name,
       name: constants.TOKEN_SETTING,
       type: 'private',

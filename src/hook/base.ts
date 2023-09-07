@@ -5,7 +5,7 @@ import {
   inject,
 } from '@roxavn/core/server';
 
-import { CreateSettingService, serverModule } from '../server/index.js';
+import { UpsertSettingService, serverModule } from '../server/index.js';
 
 @serverModule.injectable()
 export abstract class UtilsInstallHook extends BaseService {
@@ -14,8 +14,8 @@ export abstract class UtilsInstallHook extends BaseService {
     protected createRoleService: CreateRoleService,
     @inject(SetAdminRoleService)
     protected setAdminRoleService: SetAdminRoleService,
-    @inject(CreateSettingService)
-    protected createSettingService: CreateSettingService
+    @inject(UpsertSettingService)
+    protected upsertSettingService: UpsertSettingService
   ) {
     super();
   }

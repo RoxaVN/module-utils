@@ -1,6 +1,6 @@
 export type SettingType = 'public' | 'private';
 
-export interface UpdateSettingRequest {
+export interface UpsertSettingRequest {
   module: string;
   name: string;
   type: SettingType;
