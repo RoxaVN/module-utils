@@ -44,7 +44,7 @@ class GetTranslationsRequest extends ExactProps<GetTranslationsRequest> {
   public readonly pageSize?: number;
 }
 
-class CreateTranslationRequest extends ExactProps<CreateTranslationRequest> {
+class UpsertTranslationRequest extends ExactProps<UpsertTranslationRequest> {
   @MinLength(1)
   @MaxLength(256)
   public readonly key: string;
@@ -82,8 +82,8 @@ class DeleteTranslationRequest extends ExactProps<DeleteTranslationRequest> {
 }
 
 export const translationApi = {
-  create: translationSource.create({
-    validator: CreateTranslationRequest,
+  upsert: translationSource.create({
+    validator: UpsertTranslationRequest,
     permission: permissions.CreateTranslation,
   }),
   getOne: translationSource.getOne({

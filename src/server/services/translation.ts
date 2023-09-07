@@ -49,9 +49,9 @@ export class GetTranslationsApiService extends InjectDatabaseService {
   }
 }
 
-@serverModule.useApi(translationApi.create)
-export class CreateTranslationApiService extends InjectDatabaseService {
-  async handle(request: InferApiRequest<typeof translationApi.create>) {
+@serverModule.useApi(translationApi.upsert)
+export class UpsertTranslationApiService extends InjectDatabaseService {
+  async handle(request: InferApiRequest<typeof translationApi.upsert>) {
     const result = await this.entityManager
       .createQueryBuilder()
       .insert()

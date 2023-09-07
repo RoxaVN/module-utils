@@ -34,7 +34,7 @@ const Page = () => {
             title: tCore('add'),
             children: (
               <ApiFormGroup
-                api={translationApi.create}
+                api={translationApi.upsert}
                 fields={[
                   {
                     name: 'key',
