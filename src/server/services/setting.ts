@@ -53,9 +53,8 @@ export class GetSettingService extends InjectDatabaseService {
 export class UpsertSettingService extends InjectDatabaseService {
   async handle(request: UpsertSettingRequest) {
     await this.entityManager
-      .createQueryBuilder()
+      .createQueryBuilder(Setting, 'setting')
       .insert()
-      .into(Setting)
       .values({
         module: request.module,
         name: request.name,

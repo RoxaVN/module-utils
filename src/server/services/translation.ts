@@ -53,9 +53,8 @@ export class GetTranslationsApiService extends InjectDatabaseService {
 export class UpsertTranslationApiService extends InjectDatabaseService {
   async handle(request: InferApiRequest<typeof translationApi.upsert>) {
     const result = await this.entityManager
-      .createQueryBuilder()
+      .createQueryBuilder(Translation, 'translation')
       .insert()
-      .into(Translation)
       .values({
         key: request.key,
         lang: request.lang,
