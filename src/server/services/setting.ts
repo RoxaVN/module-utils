@@ -1,4 +1,4 @@
-import { InferApiRequest, NotFoundException } from '@roxavn/core/base';
+import { InferApiRequest } from '@roxavn/core/base';
 import { InjectDatabaseService } from '@roxavn/core/server';
 
 import {
@@ -19,7 +19,7 @@ export class GetPublicSettingService extends InjectDatabaseService {
     if (result) {
       return result.metadata;
     }
-    throw new NotFoundException();
+    throw new NotFoundSettingException(request.name, request.module);
   }
 }
 
