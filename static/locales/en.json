@@ -7,7 +7,7 @@
     "NotFoundSettingException": "Not found setting {{ name }} of {{ module }}"
   },
   "Meta": {
-    "name": "Module utils",
-    "description": "Module utils"
+    "name": "Utils",
+    "description": "Utils"
   }
 }
