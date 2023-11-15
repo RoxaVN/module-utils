@@ -31,7 +31,7 @@ class GetModuleSettingsRequest extends ExactProps<GetModuleSettingsRequest> {
 export const settingApi = {
   getPublic: settingSource.custom<
     GetPublicSettingRequest,
-    any,
+    Record<string, any>,
     NotFoundException
   >({
     method: 'GET',
