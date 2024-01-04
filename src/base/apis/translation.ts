@@ -2,11 +2,9 @@ import {
   ApiSource,
   ExactProps,
   IsOptional,
-  Max,
   MaxLength,
-  Min,
   MinLength,
-  TransformNumber,
+  PaginationRequest,
 } from '@roxavn/core/base';
 
 import { baseModule } from '../module.js';
@@ -25,23 +23,12 @@ class GetTranslationRequest extends ExactProps<GetTranslationRequest> {
   public readonly translationId: string;
 }
 
-class GetTranslationsRequest extends ExactProps<GetTranslationsRequest> {
+class GetTranslationsRequest extends PaginationRequest<GetTranslationsRequest> {
   @IsOptional()
   public readonly key: string;
 
   @IsOptional()
   public readonly lang: string;
-
-  @Min(1)
-  @TransformNumber()
-  @IsOptional()
-  public readonly page?: number;
-
-  @Min(1)
-  @Max(100)
-  @TransformNumber()
-  @IsOptional()
-  public readonly pageSize?: number;
 }
 
 class UpsertTranslationRequest extends ExactProps<UpsertTranslationRequest> {

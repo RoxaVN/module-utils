@@ -5,7 +5,7 @@ import { UtilsInstallHook } from './base.js';
 @serverModule.injectable()
 export class InstallHook extends UtilsInstallHook {
   async handle() {
-    await this.createRoleService.handle(roles);
+    await this.createRolesService.handle(roles);
     await this.setAdminRoleService.handle(roles.Admin);
 
     const secret = await Token.create();
